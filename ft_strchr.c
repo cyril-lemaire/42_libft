@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 15:49:35 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/24 18:26:02 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/24 11:34:25 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/24 17:47:14 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char	*ft_strchr(const char *s, int c)
 {
-	const unsigned char	*s = (const unsigned char*)src;
-	unsigned char		*d;
-	const unsigned char	chr = (unsigned char)c;
-
-	d = (unsigned char*)dst;
-	while (n > 0)
-	{
-		if ((*(d++) = *(s++)) == chr)
-			return (void *)(d);
-		--n;
-	}
-	return (NULL);
+	while (*s != '\0' && *s != (char)c)
+		++s;
+	return (char*)(*s == (char)c ? s : NULL);
 }

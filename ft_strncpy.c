@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:29:55 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/17 16:31:39 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/11/24 13:00:03 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strncpy(char *dst, char *src, size_t len)
 {
-	int		i;
+	size_t		i;
 
 	i = 0;
 	while (src[i] != '\0' && i < len)

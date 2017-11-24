@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 15:49:35 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/24 18:26:02 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/24 11:39:04 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/24 18:08:21 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char	*ft_strrchr(const char *s, int c)
 {
-	const unsigned char	*s = (const unsigned char*)src;
-	unsigned char		*d;
-	const unsigned char	chr = (unsigned char)c;
+	const char	*cptr;
+	const char	chr = (char)c;
+	size_t		i;
 
-	d = (unsigned char*)dst;
-	while (n > 0)
+	cptr = NULL;
+	i = 0;
+	while (s[i] != '\0')
 	{
-		if ((*(d++) = *(s++)) == chr)
-			return (void *)(d);
-		--n;
+		if (s[i] == chr)
+			cptr = s + i;
+		++i;
 	}
-	return (NULL);
+	if (chr == '\0')
+		cptr = (s + i);
+	return (char*)(cptr);
 }

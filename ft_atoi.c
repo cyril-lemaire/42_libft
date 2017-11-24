@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 15:49:35 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/24 18:26:02 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/24 13:16:52 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/24 15:23:57 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+int		ft_atoi(const char *str)
 {
-	const unsigned char	*s = (const unsigned char*)src;
-	unsigned char		*d;
-	const unsigned char	chr = (unsigned char)c;
+	int		res;
+	int		i;
+	int		is_negative;
 
-	d = (unsigned char*)dst;
-	while (n > 0)
+	res = 0;
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\f' || str[i] == '\v')
+		++i;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if ((*(d++) = *(s++)) == chr)
-			return (void *)(d);
-		--n;
+		is_negative = (str[i] == '-');
+		++i;
 	}
-	return (NULL);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res *= 10;
+		res += str[i] - '0';
+		++i;
+	}
+	return (is_negative ? -res : res);
 }

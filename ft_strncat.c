@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 15:49:35 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/24 18:26:02 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/24 10:58:08 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/24 12:28:41 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n)
 {
-	const unsigned char	*s = (const unsigned char*)src;
-	unsigned char		*d;
-	const unsigned char	chr = (unsigned char)c;
+	char	*s3;
+	size_t	i;
 
-	d = (unsigned char*)dst;
-	while (n > 0)
+	s3 = s1;
+	while (*s3 != '\0')
+		++s3;
+	i = 0;
+	while (s2[i] != '\0' && i < n)
 	{
-		if ((*(d++) = *(s++)) == chr)
-			return (void *)(d);
-		--n;
+		s3[i] = s2[i];
+		++i;
 	}
-	return (NULL);
+	s3[i] = '\0';
+	return (s1);
 }
