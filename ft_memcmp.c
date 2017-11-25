@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 12:12:27 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/25 12:01:10 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/25 10:54:23 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/25 11:03:39 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, char *src)
+#include <string.h>
+
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		i;
+	const unsigned char		*a = (unsigned char*)s1;
+	const unsigned char		*b = (unsigned char*)s2;
+	size_t					i;
 
 	i = 0;
-	while (src[i] != '\0')
+	while (i < n)
 	{
-		dst[i] = src[i];
+		if (a[i] != b[i])
+			return (a[i] - b[i]);
 		++i;
 	}
-	dst[i] = '\0';
-	return (dst);
+	return (0);
 }
