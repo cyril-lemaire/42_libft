@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = libft.a
+NAME = libft
 
 SRC = ft_atoi.c		\
 	ft_bzero.c		\
@@ -45,22 +45,31 @@ SRC_FOLDER = .
 
 BIN = ${SRC:.c=.o}
 
-.PHONY: all clean fclean re nobin
+.PHONY: all a so clean fclean re nobin
 
-all: ${NAME}
+all: ${NAME}.a ${NAME}.so
 
 ${BIN}:
-	gcc -c -I${SRC_FOLDER} -Wall -Wextra -Werror ${SRC}
+	@echo "@gcc -c -fPIC -I${SRC_FOLDER} -Wall -Wextra -Werror [SRC FILES]"
+	@gcc -c -fPIC -I${SRC_FOLDER} -Wall -Wextra -Werror ${SRC}
 
-${NAME}: ${BIN}
-	ar rcs ${NAME} ${BIN}
-	ranlib ${NAME}
+${NAME}.a: ${BIN}
+	ar rcs ${NAME}.a ${BIN}
+	ranlib ${NAME}.a
+
+a: ${NAME}.a
+
+${NAME}.so: ${BIN}
+	gcc -shared -Wl,-soname,libft.so -o libft.so
+
+so: ${NAME}.so
 
 clean:
-	rm -f ${BIN}
+	@echo "@rm -f [OBJ FILES]"
+	@rm -f ${BIN}
 
 fclean: clean
-	rm -f ${NAME}
+	rm -f ${NAME}.a ${NAME}.so
 
 re: fclean all
 
