@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 11:27:16 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 15:02:31 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/28 11:44:06 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/28 12:01:54 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strnew(size_t size)
 {
-	size_t				i;
-	const unsigned char	*str;
-	const unsigned char	c_char = (unsigned char)c;
-
-	i = 0;
-	str = (const unsigned char*)s;
-	while (i < n - 1 && str[i] != '\0' && str[i] != c_char)
-		++i;
-	return (str[i] == c_char ? (void *)&str[i] : NULL);
+	return ((char*)ft_memalloc((size + 1) * sizeof(char)));
 }

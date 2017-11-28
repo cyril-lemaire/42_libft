@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 11:27:16 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 15:02:31 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/28 12:34:50 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/28 14:49:26 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	size_t				i;
-	const unsigned char	*str;
-	const unsigned char	c_char = (unsigned char)c;
+	char			*res;
 
-	i = 0;
-	str = (const unsigned char*)s;
-	while (i < n - 1 && str[i] != '\0' && str[i] != c_char)
-		++i;
-	return (str[i] == c_char ? (void *)&str[i] : NULL);
+	res = (char*)malloc((len + 1) * sizeof(*s));
+	if (res == NULL)
+		return (NULL);
+	ft_strncpy(res, &s[start], len);
+	res[len] = '\0';
+	return (res);
 }

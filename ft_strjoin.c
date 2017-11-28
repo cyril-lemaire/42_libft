@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 11:27:16 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 15:02:31 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/28 12:48:02 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/28 13:55:07 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t				i;
-	const unsigned char	*str;
-	const unsigned char	c_char = (unsigned char)c;
+	char	*res;
 
-	i = 0;
-	str = (const unsigned char*)s;
-	while (i < n - 1 && str[i] != '\0' && str[i] != c_char)
-		++i;
-	return (str[i] == c_char ? (void *)&str[i] : NULL);
+	res = (char*)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(*s1));
+	if (res == NULL)
+		return (NULL);
+	return (ft_strcat(ft_strcpy(res, s1), s2));
 }

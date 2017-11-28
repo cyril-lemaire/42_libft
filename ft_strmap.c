@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 11:27:16 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 15:02:31 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/28 12:08:28 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/28 12:28:34 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	size_t				i;
-	const unsigned char	*str;
-	const unsigned char	c_char = (unsigned char)c;
+	char	*res;
+	char	*cptr;
 
-	i = 0;
-	str = (const unsigned char*)s;
-	while (i < n - 1 && str[i] != '\0' && str[i] != c_char)
-		++i;
-	return (str[i] == c_char ? (void *)&str[i] : NULL);
+	res = (char*)malloc((ft_strlen(s) + 1) * sizeof(*s));
+	if (res == NULL)
+		return (NULL);
+	cptr = res;
+	while (*s != '\0')
+		*(cptr++) = f(*(s++));
+	*cptr = '\0';
+	return (res);
 }

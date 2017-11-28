@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 11:27:16 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 15:02:31 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/28 12:14:34 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/28 12:29:48 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t				i;
-	const unsigned char	*str;
-	const unsigned char	c_char = (unsigned char)c;
+	char			*res;
+	unsigned int	i;
 
+	res = (char*)malloc((ft_strlen(s) + 1) * sizeof(*s));
+	if (res == NULL)
+		return (NULL);
 	i = 0;
-	str = (const unsigned char*)s;
-	while (i < n - 1 && str[i] != '\0' && str[i] != c_char)
+	while (s[i] != '\0')
+	{
+		res[i] = f(i, s[i]);
 		++i;
-	return (str[i] == c_char ? (void *)&str[i] : NULL);
+	}
+	res[i] = '\0';
+	return (res);
 }

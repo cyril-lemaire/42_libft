@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 11:27:16 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 15:02:31 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/28 13:05:36 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/28 14:51:43 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strtrim(char const *s)
 {
-	size_t				i;
-	const unsigned char	*str;
-	const unsigned char	c_char = (unsigned char)c;
+	size_t	trimmed_len;
 
-	i = 0;
-	str = (const unsigned char*)s;
-	while (i < n - 1 && str[i] != '\0' && str[i] != c_char)
-		++i;
-	return (str[i] == c_char ? (void *)&str[i] : NULL);
+	while (ft_isspace(*s) && *s != '\0')
+		++s;
+	trimmed_len = ft_strlen(s);
+	while (trimmed_len > 0 && ft_isspace(s[trimmed_len - 1]))
+		--trimmed_len;
+	return (ft_strsub(s, 0, trimmed_len));
 }
