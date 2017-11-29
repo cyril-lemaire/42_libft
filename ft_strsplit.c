@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 13:17:59 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/29 11:13:21 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/11/29 16:08:12 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char		**ft_strsplit(char const *s, char c)
 	size_t	i;
 	size_t	j;
 
+	if (s == NULL)
+		return (NULL);
 	arr = (char**)malloc((substr_count(s, c) + 1) * sizeof(char*));
 	if (arr == NULL)
 		return (NULL);

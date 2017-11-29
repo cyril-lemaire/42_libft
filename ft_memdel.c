@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 11:42:17 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 11:58:06 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/11/29 15:46:35 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 void	ft_memdel(void **ap)
 {
-	free(*ap);
-	*ap = NULL;
+	if (ap != NULL && *ap != NULL)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
 }

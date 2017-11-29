@@ -6,18 +6,23 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 12:04:39 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 12:20:50 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/11/29 16:00:03 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <string.h>
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
 	unsigned int	i;
-
-	i = 0;
-	while (s[i] != '\0')
+	
+	if (s != NULL)
 	{
-		f(i, &s[i]);
-		++i;
+		i = 0;
+		while (s[i] != '\0')
+		{
+			f(i, &s[i]);
+			++i;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 12:08:28 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 12:28:34 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/11/29 16:01:32 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	char	*res;
 	char	*cptr;
 
+	if (s == NULL)
+		return (NULL);
 	res = (char*)malloc((ft_strlen(s) + 1) * sizeof(*s));
 	if (res == NULL)
 		return (NULL);
