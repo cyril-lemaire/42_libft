@@ -6,7 +6,7 @@
 #    By: clemaire <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 16:35:50 by clemaire          #+#    #+#              #
-#    Updated: 2017/11/28 18:47:04 by clemaire         ###   ########.fr        #
+#    Updated: 2017/11/29 14:37:58 by clemaire         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -64,6 +64,12 @@ SRC = ft_atoi.c		\
 	ft_putstr_fd.c	\
 	ft_putendl_fd.c	\
 	ft_putnbr_fd.c	\
+	ft_lstnew.c		\
+	ft_lstdelone.c	\
+	ft_lstdel.c		\
+	ft_lstadd.c		\
+	ft_lstiter.c	\
+	ft_lstmap.c		\
 	ft_isspace.c	\
 	ft_mod.c		\
 	ft_abs.c

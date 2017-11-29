@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 13:05:36 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/29 12:45:29 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/29 13:28:45 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/29 15:25:40 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	size_t	trimmed_len;
+	t_list	*current_cell;
+	t_list	*next_cell;
 
-	while ((*s == ' ' || *s == '\n' || *s == '\t') && *s != '\0')
-		++s;
-	trimmed_len = ft_strlen(s);
-	while (trimmed_len > 0 && ft_isspace(s[trimmed_len - 1]))
-		--trimmed_len;
-	return (ft_strsub(s, 0, trimmed_len));
+	if (alst != NULL)
+	{
+		current_cell = *alst;
+		while (current_cell != NULL)
+		{
+			next_cell = current_cell->next;
+			ft_lstdelone(&current_cell, del);
+			current_cell = next_cell;
+		}
+		*alst = NULL;
+	}
 }

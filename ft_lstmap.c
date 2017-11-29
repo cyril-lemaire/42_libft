@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 11:19:49 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/29 13:15:16 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/29 14:00:01 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/29 14:53:13 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_memalloc(size_t size)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	void	*mem_start;
-	char	*mem_end;
+	t_list		*new_lst;
+	t_list		*f_ret;
+	t_list		*current_cell;
 
-	mem_start = malloc(size);
-	if (mem_start == NULL)
+	if (lst == NULL)
 		return (NULL);
-	mem_end = (char*)mem_start + size;
-	while ((void*)mem_end >= mem_start)
-		*(mem_end--) = '\0';
-	return (mem_start);
+	new_lst = f(lst);
+	lst = lst->next;
+	current_cell = new_lst;
+	while (lst != NULL && current_cell != NULL)
+	{
+		f_ret = f(lst);
+		current_cell->next = ft_lstnew(f_ret->content, f_ret->content_size);
+		lst = lst->next;
+		current_cell = current_cell->next;
+	}
+	return (new_lst);
 }

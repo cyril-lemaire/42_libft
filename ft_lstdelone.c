@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 13:05:36 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/29 12:45:29 by clemaire         ###   ########.fr       */
+/*   Created: 2017/11/29 13:16:59 by clemaire          #+#    #+#             */
+/*   Updated: 2017/11/29 13:35:31 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	size_t	trimmed_len;
-
-	while ((*s == ' ' || *s == '\n' || *s == '\t') && *s != '\0')
-		++s;
-	trimmed_len = ft_strlen(s);
-	while (trimmed_len > 0 && ft_isspace(s[trimmed_len - 1]))
-		--trimmed_len;
-	return (ft_strsub(s, 0, trimmed_len));
+	if (alst != NULL && *alst != NULL)
+	{
+		del((*alst)->content, (*alst)->content_size);
+		ft_memdel((void**)alst);
+	}
 }

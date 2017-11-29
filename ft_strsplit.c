@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 13:17:59 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 14:54:51 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/11/29 11:13:21 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ char		**ft_strsplit(char const *s, char c)
 		j = 0;
 		while (s[j] != '\0' && s[j] != c)
 			++j;
-		arr[i++] = (j == 0) ? 0 : ft_strsub(s, 0, j);
+		if (j > 0)
+			arr[i++] = ft_strsub(s, 0, j);
 		s += j;
 	}
+	arr[i] = 0;
 	return (arr);
 }
