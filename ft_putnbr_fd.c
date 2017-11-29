@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 17:23:23 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/28 17:40:46 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/11/29 16:33:57 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	char			repr[16];
+	char			*cptr;
+
 	if (n < 0)
 		ft_putchar_fd('-', fd);
-	if (n > 10 || n < -10)
-		ft_putnbr_fd(ft_abs(n / 10), fd);
-	ft_putchar_fd('0' + ft_abs(n % 10), fd);
+	repr[15] = '\0';
+	cptr = &repr[14];
+	*cptr = '0' + ft_abs(n % 10);
+	n = ft_abs(n / 10);
+	while (n > 0)
+	{
+		*(--cptr) = '0' + ft_abs(n % 10);
+		n /= 10;
+	}
+	ft_putstr_fd(cptr, fd);
 }
