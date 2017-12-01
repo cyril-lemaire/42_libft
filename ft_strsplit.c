@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 13:17:59 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/29 16:08:12 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/12/01 13:19:49 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static int	substr_count(char const *s, char c)
 
 char		**ft_strsplit(char const *s, char c)
 {
-	char	**arr;
-	size_t	i;
-	size_t	j;
+	char			**arr;
+	unsigned int	i;
+	unsigned int	j;
 
 	if (s == NULL)
 		return (NULL);

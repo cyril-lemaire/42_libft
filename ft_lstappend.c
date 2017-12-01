@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_lstappend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 17:12:20 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/30 19:47:11 by clemaire         ###   ########.fr       */
+/*   Created: 2017/12/01 12:17:40 by clemaire          #+#    #+#             */
+/*   Updated: 2017/12/01 13:13:09 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_abs(int n)
+#include <string.h>
+#include "libft.h"
+
+t_list		*ft_lstappend(t_list *lst, const t_list *new)
 {
-	return ((n < 0) ? -n : n);
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	lst->next = (t_list*)new;
+	return (lst);
 }

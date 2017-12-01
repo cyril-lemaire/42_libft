@@ -6,7 +6,7 @@
 #    By: clemaire <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 16:35:50 by clemaire          #+#    #+#              #
-#    Updated: 2017/11/29 14:37:58 by clemaire         ###   ########.fr        #
+#    Updated: 2017/12/01 13:59:18 by clemaire         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -72,7 +72,9 @@ SRC = ft_atoi.c		\
 	ft_lstmap.c		\
 	ft_isspace.c	\
 	ft_mod.c		\
-	ft_abs.c
+	ft_abs.c		\
+	ft_lstcpy.c		\
+	ft_lstappend.c	\
 
 SRC_FOLDER = .
 
@@ -82,9 +84,8 @@ OBJ = ${SRC:.c=.o}
 
 all: ${NAME}
 
-${OBJ}:
-	@echo "@gcc -c -I${SRC_FOLDER} -Wall -Wextra -Werror [SRC FILES]"
-	@gcc -c -I${SRC_FOLDER} -Wall -Wextra -Werror ${SRC}
+%.o: %.c
+	gcc -c -I${SRC_FOLDER} -Wall -Wextra -Werror -c -o $@ $<
 
 ${NAME}: ${OBJ}
 	@echo '@ar rcs ${NAME} [OBJ FILES]'
