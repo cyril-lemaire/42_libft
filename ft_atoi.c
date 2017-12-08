@@ -28,8 +28,6 @@ int			ft_atoi(const char *str)
 	{
 		res *= 10;
 		res += str[i] - '0';
-		if (res < 0 && res != -res)
-			return (is_negative ? 0 : -1);
 		++i;
 	}
 	return (is_negative ? -res : res);

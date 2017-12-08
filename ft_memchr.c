@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 11:27:16 by clemaire          #+#    #+#             */
-/*   Updated: 2017/12/01 11:25:20 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/12/04 15:30:01 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (str[i] == c_char)
-			return ((void*)&str[i]);
+			return (void*)&str[i];
 		++i;
 	}
 	return (NULL);
