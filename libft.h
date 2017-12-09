@@ -86,4 +86,5 @@ int				ft_abs(int n);
 t_list			*ft_lstcpy(const t_list *lst);
 t_list			*lst_append(t_list *lst, const t_list *new);
 
+
 #endif
