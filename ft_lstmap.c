@@ -10,26 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <string.h>
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+static void	ft_del_content(void *content, size_t content_size)
+{
+	(void)content_size;
+	free(content);
+}
+
+t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
 	t_list		*new_lst;
 	t_list		*f_ret;
 	t_list		*current_cell;
 
-	if (lst == NULL)
+	if (lst == NULL || f == NULL)
 		return (NULL);
-	new_lst = f(lst);
+	if ((f_ret = f(lst)) == NULL ||
+		(new_lst = ft_lstnew(f_ret->content, f_ret->content_size)) == NULL)
+		return (NULL);
 	lst = lst->next;
 	current_cell = new_lst;
-	while (lst != NULL && current_cell != NULL)
+	while (lst != NULL)
 	{
-		f_ret = f(lst);
-		current_cell->next = ft_lstnew(f_ret->content, f_ret->content_size);
-		lst = lst->next;
+		if ((f_ret = f(lst)) == NULL || (current_cell->next =\
+			ft_lstnew(f_ret->content, f_ret->content_size)) == NULL)
+		{
+			ft_lstdel((void*)new_lst, ft_del_content);
+			return (NULL);
+		}
 		current_cell = current_cell->next;
+		lst = lst->next;
 	}
 	return (new_lst);
 }

@@ -90,7 +90,6 @@ all: ${NAME}
 ${NAME}: ${OBJ}
 	@echo '@ar rcs ${NAME} [OBJ FILES]'
 	@ar rcs ${NAME} ${OBJ}
-	ranlib ${NAME}
 
 clean:
 	@echo "@rm -f [OBJ FILES]"
