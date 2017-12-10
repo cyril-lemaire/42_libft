@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void	ft_memdel(void **ap)
+void		ft_memdel(void **ap)
 {
 	if (ap != NULL && *ap != NULL)
 	{

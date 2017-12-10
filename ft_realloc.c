@@ -19,15 +19,21 @@
 **	allocation as a parameter. We also can't just resize the current allocation
 **	so the pointed area will systematically be destroyed and copied to a new one
 **	of size new_size.
+**	Since the old memory is destroyed, ptr is taken by reference and set to
+**	the new memory address. (Same as the return value)
 */
 
-int		ft_realloc(void *ptr, size_t old_size, size_t new_size)
+void			*ft_realloc(void **ap, size_t old_size, size_t new_size)
 {
 	void	*new_ptr;
 
-	if (ptr == NULL)
-		return (0);
-	if ((new_ptr = malloc(new_size)) == NULL)
+	if (new_size == 0 || ap == NULL)
+	{
+		ft_memdel(ap);
 		return (NULL);
-	return (ft_memcpy(new_ptr, ptr, (size_t)ft_min(old_size, new_size)));
+	}
+	if (*ap != NULL && (new_ptr = malloc(new_size)) != NULL)
+		ft_memcpy(new_ptr, *ap, (size_t)ft_min(old_size, new_size));
+	free(*ap);
+	return (*ap = new_ptr);
 }

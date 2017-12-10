@@ -13,12 +13,22 @@
 #include <string.h>
 #include "libft.h"
 
-t_list		*ft_lstappend(t_list *lst, const t_list *new)
+/*
+**	Appends the node (or list) new to *alst
+**	If *alst is NULL, set it to new
+**	/!\ It is perfectly possible to build a cyclic list using this function
+**	(by using ft_lstappend(&my_list, my_list) for instance), note though that
+**	this function will naturally timeout on a cyclic list.
+*/
+
+t_list		*ft_lstappend(t_list **alst, const t_list *new)
 {
-	if (lst == NULL)
+	if (alst == NULL)
 		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	lst->next = (t_list*)new;
-	return (lst);
+	if (*alst == NULL)
+		return (*alst = (t_list*)new);
+	while ((*alst)->next != NULL)
+		*alst = (*alst)->next;
+	(*alst)->next = (t_list*)new;
+	return (*alst);
 }

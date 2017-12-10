@@ -83,8 +83,14 @@ t_list			*ft_lstmap(t_list *lst, t_list *(f)(t_list *elem));
 int				ft_isspace(int c);
 int				ft_mod(int n, int b);
 int				ft_abs(int n);
+double			ft_min(double a, double b);
+double			ft_max(double a, double b);
+void			*ft_realloc(void **ptr, size_t old_size, size_t new_size);
 t_list			*ft_lstcpy(const t_list *lst);
-t_list			*lst_append(t_list *lst, const t_list *new);
-
+t_list			*ft_lstappend(t_list **alst, const t_list *new);
+t_list			*ft_lstgetindex(const t_list *lst, size_t index);
+int				ft_lstdelindex(t_list **alst, size_t index,
+								void (*del)(void *, size_t));
+int				ft_lstdelnext(t_list *node, void (*del)(void *, size_t));
 
 #endif

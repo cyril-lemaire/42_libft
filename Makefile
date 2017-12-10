@@ -75,6 +75,9 @@ SRC = ft_atoi.c		\
 	ft_abs.c			\
 	ft_lstcpy.c		\
 	ft_lstappend.c		\
+	ft_lstdelnext.c	\
+	ft_lstgetindex.c	\
+	ft_lstdelindex.c	\
 	ft_min.c			\
 	ft_max.c			\
 	ft_realloc.c		\
