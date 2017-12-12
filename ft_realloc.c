@@ -32,8 +32,12 @@ void			*ft_realloc(void **ap, size_t old_size, size_t new_size)
 		ft_memdel(ap);
 		return (NULL);
 	}
-	if (*ap != NULL && (new_ptr = malloc(new_size)) != NULL)
+	if ((new_ptr = malloc(new_size)) == NULL)
+		return (NULL);
+	if (*ap != NULL)
+	{
 		ft_memcpy(new_ptr, *ap, (size_t)ft_min(old_size, new_size));
-	free(*ap);
+		free(*ap);
+	}
 	return (*ap = new_ptr);
 }
