@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 12:17:40 by clemaire          #+#    #+#             */
-/*   Updated: 2017/12/01 13:13:09 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/12/12 16:51:58 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@
 
 t_list		*ft_lstappend(t_list **alst, const t_list *new)
 {
+	t_list		*node;
+
 	if (alst == NULL)
 		return (NULL);
 	if (*alst == NULL)
 		return (*alst = (t_list*)new);
-	while ((*alst)->next != NULL)
-		*alst = (*alst)->next;
-	(*alst)->next = (t_list*)new;
+	node = *alst;
+	while (node->next != NULL)
+		node = node->next;
+	node->next = (t_list*)new;
 	return (*alst);
 }
