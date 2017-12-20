@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+**	Counterintuitively, return ((c & 127) == c) runs slower than this.
+*/
+
 int		ft_isascii(int c)
 {
 	return (c >= 0 && c < 128);

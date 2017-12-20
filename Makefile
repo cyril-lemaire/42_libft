@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = libft.a
+LIBNAME = ft
 
 SRC = ft_atoi.c		\
 	ft_bzero.c			\
@@ -80,30 +80,43 @@ SRC = ft_atoi.c		\
 	ft_lstdelindex.c	\
 	ft_min.c			\
 	ft_max.c			\
-	ft_realloc.c		\
-
-SRC_FOLDER = .
+	ft_realloc.c
 
 OBJ = ${SRC:.c=.o}
 
-.PHONY: all clean fclean re nobj
+SRC_FOLDER = .
 
-all: ${NAME}
+CFLAGS = -Wall -Wextra -Werror # -O3
+
+.PHONY: all a so clean fclean reclean re soflags
+
+all: lib${LIBNAME}.a
 
 %.o: %.c
-	gcc -c -I${SRC_FOLDER} -Wall -Wextra -Werror -c -o $@ $<
+	gcc -c ${CFLAGS} -I${SRC_FOLDER} -o $@ $<
 
-${NAME}: ${OBJ}
-	@echo '@ar rcs ${NAME} [OBJ FILES]'
-	@ar rcs ${NAME} ${OBJ}
+a: lib${LIBNAME}.a
+
+so: lib${LIBNAME}.so
+
+lib${LIBNAME}.a: ${OBJ}
+	@echo '@ar rcs lib${LIBNAME}.a [OBJ FILES]'
+	@ar rcs lib${LIBNAME}.a ${OBJ}
+
+lib${LIBNAME}.so: CFLAGS += -fPIC
+lib${LIBNAME}.so: ${SRC}
+	@echo '@gcc -shared -o lib${LIBNAME}.so [OBJ FILES]'
+	@gcc -shared ${CFLAGS} -o lib${LIBNAME}.so ${SRC}
 
 clean:
 	@echo "@rm -f [OBJ FILES]"
 	@rm -f ${OBJ}
 
 fclean: clean
-	rm -f ${NAME}
+	rm -f lib${LIBNAME}.a lib${LIBNAME}.so
+
+reclean:
+	@echo "@rm -f [OBJ FILES]"
+	@rm -f ${OBJ}
 
 re: fclean all
-
-nobj: all clean
