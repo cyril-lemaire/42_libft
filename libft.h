@@ -92,5 +92,6 @@ t_list			*ft_lstgetindex(const t_list *lst, size_t index);
 int				ft_lstdelindex(t_list **alst, size_t index,
 								void (*del)(void *, size_t));
 int				ft_lstdelnext(t_list *node, void (*del)(void *, size_t));
+char			*ft_stradd(char **dest, const char *src);
 
 #endif

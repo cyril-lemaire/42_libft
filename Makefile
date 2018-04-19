@@ -81,6 +81,7 @@ SRC = ft_atoi.c		\
 	ft_min.c			\
 	ft_max.c			\
 	ft_realloc.c		\
+	ft_stradd.c
 
 SRC_FOLDER = .
 
