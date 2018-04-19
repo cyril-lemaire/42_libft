@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 10:58:08 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/29 10:47:24 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/12/23 08:29:26 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	char	*s3;
 	size_t	i;
 
-	s3 = s1;
-	while (*s3 != '\0')
-		++s3;
 	i = 0;
-	while (s2[i] != '\0' && i < n)
-	{
-		s3[i] = s2[i];
+	while (s1[i] != '\0')
 		++i;
-	}
-	s3[i] = '\0';
+	while (*s2 != '\0' && n--)
+		s1[i++] = *(s2++);
+	s1[i] = '\0';
 	return (s1);
 }
