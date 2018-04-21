@@ -6,7 +6,7 @@
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 12:46:42 by clemaire          #+#    #+#             */
-/*   Updated: 2017/12/01 12:26:25 by clemaire         ###   ########.fr       */
+/*   Updated: 2018/04/21 05:28:10 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ t_list			*ft_lstgetindex(const t_list *lst, size_t index);
 int				ft_lstdelindex(t_list **alst, size_t index,
 								void (*del)(void *, size_t));
 int				ft_lstdelnext(t_list *node, void (*del)(void *, size_t));
-char			*ft_stradd(char **dest, const char *src);
+char			*ft_stradd(const char *s1, const char *s2);
 
 #endif

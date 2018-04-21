@@ -6,7 +6,7 @@
 #    By: clemaire <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 16:35:50 by clemaire          #+#    #+#              #
-#    Updated: 2017/12/01 13:59:18 by clemaire         ###   ########.fr        #
+#    Updated: 2018/04/21 04:37:29 by clemaire         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -84,7 +84,6 @@ SRC = ft_atoi.c		\
 	ft_stradd.c
 
 OBJ = ${SRC:.c=.o}
->>>>>>> origin/time_optimization
 
 SRC_FOLDER = .
 
