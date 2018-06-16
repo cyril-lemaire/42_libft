@@ -12,7 +12,7 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <string.h>
+# include <stddef.h>
 
 typedef struct	s_list
 {
@@ -90,7 +90,8 @@ t_list			*ft_lstcpy(const t_list *lst);
 t_list			*ft_lstappend(t_list **alst, const t_list *new);
 t_list			*ft_lstgetindex(const t_list *lst, size_t index);
 int				ft_lstdelindex(t_list **alst, size_t index,
-								void (*del)(void *, size_t));
-int				ft_lstdelnext(t_list *node, void (*del)(void *, size_t));
+								void (*del)(void*, size_t));
+int				ft_lstdelnext(t_list *node, void (*del)(void*, size_t));
+size_t			ft_wcslen(const wchar_t *s);
 
 #endif
