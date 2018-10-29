@@ -27,20 +27,16 @@ static void		del(void *elt, size_t elt_size)
 t_list			*ft_lstcpy(const t_list *lst)
 {
 	t_list			*cpy;
-	const t_list	*lst_cell;
 	t_list			*cpy_cell;
 
 	if (lst == NULL)
 		return (NULL);
-	cpy = ft_lstnew(lst->content, lst->content_size);
-	if (cpy == NULL)
+	if ((cpy = ft_lstnew(lst->content, lst->content_size)) == NULL)
 		return (NULL);
-	lst_cell = lst;
 	cpy_cell = cpy;
-	while (lst_cell->next != NULL)
+	while ((lst = lst->next) != NULL)
 	{
-		lst_cell = lst_cell->next;
-		cpy_cell->next = ft_lstnew(lst_cell->content, lst_cell->content_size);
+		cpy_cell->next = ft_lstnew(lst->content, lst->content_size);
 		if (cpy_cell == NULL)
 		{
 			ft_lstdel(&cpy, del);

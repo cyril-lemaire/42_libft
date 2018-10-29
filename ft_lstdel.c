@@ -13,7 +13,7 @@
 #include <string.h>
 #include "libft.h"
 
-void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void		ft_lstdel(t_list **alst, void (*del)(void *content, size_t size))
 {
 	t_list	*current_cell;
 	t_list	*next_cell;
