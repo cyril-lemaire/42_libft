@@ -10,118 +10,146 @@
 #                                                                              #
 #******************************************************************************#
 
-LIBNAME = ft
+LIBNAME =			ft
+STATIC_LIBNAME =	lib${LIBNAME}.a
+SHARED_LIBNAME =	lib${LIBNAME}.so
 
-SRC = ft_atoi.c			\
-	ft_bzero.c			\
-	ft_isalnum.c		\
-	ft_isalpha.c		\
-	ft_isascii.c		\
-	ft_isdigit.c		\
-	ft_isprint.c		\
-	ft_memccpy.c		\
-	ft_memchr.c			\
-	ft_memcmp.c			\
-	ft_memcpy.c			\
-	ft_memmove.c		\
-	ft_memset.c			\
-	ft_strcat.c			\
-	ft_strchr.c			\
-	ft_strcmp.c			\
-	ft_strcpy.c			\
-	ft_strdup.c			\
-	ft_strlcat.c		\
-	ft_strlen.c			\
-	ft_strncat.c		\
-	ft_strncmp.c		\
-	ft_strncpy.c		\
-	ft_strnstr.c		\
-	ft_strrchr.c		\
-	ft_strstr.c			\
-	ft_tolower.c		\
-	ft_toupper.c		\
-	ft_memalloc.c		\
-	ft_memdel.c			\
-	ft_strnew.c			\
-	ft_strdel.c			\
-	ft_strclr.c			\
-	ft_striter.c		\
-	ft_striteri.c		\
-	ft_strmap.c			\
-	ft_strmapi.c		\
-	ft_strequ.c			\
-	ft_strnequ.c		\
-	ft_strsub.c			\
-	ft_strjoin.c		\
-	ft_strtrim.c		\
-	ft_itoa.c			\
-	ft_strsplit.c		\
-	ft_putchar.c		\
-	ft_putstr.c			\
-	ft_putendl.c		\
-	ft_putnbr.c			\
-	ft_putchar_fd.c		\
-	ft_putstr_fd.c		\
-	ft_putendl_fd.c		\
-	ft_putnbr_fd.c		\
-	ft_lstnew.c			\
-	ft_lstnew_nocp.c	\
-	ft_lstdelone.c		\
-	ft_lstdel.c			\
-	ft_lstadd.c			\
-	ft_lstiter.c		\
-	ft_lstmap.c			\
-	ft_isspace.c		\
-	ft_mod.c			\
-	ft_abs.c			\
-	ft_lstcpy.c			\
-	ft_lstappend.c		\
-	ft_lstdelnext.c		\
-	ft_lstgetindex.c	\
-	ft_lstdelindex.c	\
-	ft_min.c			\
-	ft_max.c			\
-	ft_realloc.c		\
-	ft_stracat.c		\
-	ft_stradd.c			\
-	ft_wcslen.c			\
+INCL_DIR =		includes
+SRC_DIR =		srcs
+BIN_ROOT =		bin
+STATIC_DIR =	$(BIN_ROOT)/static
+SHARED_DIR =	$(BIN_ROOT)/shared
 
-OBJ = ${SRC:.c=.o}
+SRC_NAMES =	atoi			\
+			bzero			\
+			isalnum			\
+			isalpha			\
+			isascii			\
+			isdigit			\
+			isprint			\
+			memccpy			\
+			memchr			\
+			memcmp			\
+			memcpy			\
+			memmove			\
+			memset			\
+			strcat			\
+			strchr			\
+			strcmp			\
+			strcpy			\
+			strdup			\
+			strlcat			\
+			strlen			\
+			strncat			\
+			strncmp			\
+			strncpy			\
+			strnstr			\
+			strrchr			\
+			strstr			\
+			tolower			\
+			toupper			\
+			memalloc		\
+			memdel			\
+			strnew			\
+			strdel			\
+			strclr			\
+			striter			\
+			striteri		\
+			strmap			\
+			strmapi			\
+			strequ			\
+			strnequ			\
+			strsub			\
+			strjoin			\
+			strtrim			\
+			itoa			\
+			strsplit		\
+			putchar			\
+			putstr			\
+			putendl			\
+			putnbr			\
+			putchar_fd		\
+			putstr_fd		\
+			putendl_fd		\
+			putnbr_fd		\
+			lstnew			\
+			lstnew_nocp		\
+			lstdelone		\
+			lstdel			\
+			lstadd			\
+			lstiter			\
+			lstmap			\
+			isspace			\
+			mod				\
+			abs				\
+			lstcpy			\
+			lstappend		\
+			lstdelnext		\
+			lstgetindex		\
+			lstdelindex		\
+			min				\
+			max				\
+			realloc			\
+			stracat			\
+			stradd			\
+			wcslen			\
+			sqrtint			\
 
-SRC_FOLDER = .
+SRC =			${SRC_NAMES:%=${SRC_DIR}/$(LIBNAME)_%.c}
+STATIC_BIN =	${SRC_NAMES:%=${STATIC_DIR}/$(LIBNAME)_%.o}
+SHARED_BIN =	${SRC_NAMES:%=${SHARED_DIR}/$(LIBNAME)_%.o}
 
-CFLAGS = -Wall -Wextra -Werror # -O3
+CC =		gcc
+CFLAGS = 	-Wall -Wextra -Werror
+AR_RCS =	ar rcs
+RM_F =		rm -f
+MKDIR_P =	mkdir -p
+TOUCH =		touch
 
-.PHONY: all a so clean fclean reclean re obj nobj soflags
+DEFAULT_MODE =	a	# a: static library, so: shared objects library
 
-all: lib${LIBNAME}.a
+all: ${DEFAULT_MODE}
+clean: clean_${DEFAULT_MODE}
+fclean: fclean_${DEFAULT_MODE}
+re: re_${DEFAULT_MODE}
+reclean: reclean_${DEFAULT_MODE}
 
-obj: ${OBJ}
+%.o: CFLAGS += -c
+$(SHARED_DIR)/%.o: CFLAGS += -fPIC
+$(STATIC_DIR)/%.o ${SHARED_DIR}/%.o: ${SRC_DIR}/%.c .mkdir_${dir $@}
+	${CC} ${CFLAGS} -I ${INCL_DIR} -o $@ $<
 
-%.o: %.c
-	gcc -c -fPIC ${CFLAGS} -I${SRC_FOLDER} -o $@ $<
+.mkdir_%:
+	${MKDIR_P} $*
+	${TOUCH} $@
 
-a: lib${LIBNAME}.a
+a: ${STATIC_LIBNAME}
 
-so: lib${LIBNAME}.so
+so: ${SHARED_LIBNAME}
 
-lib${LIBNAME}.a: ${OBJ}
-	@echo '@ar rcs lib${LIBNAME}.a [OBJ FILES]'
-	@ar rcs lib${LIBNAME}.a ${OBJ}
+${STATIC_LIBNAME}: ${STATIC_BIN}
+	ar rcs $@ $?
 
-lib${LIBNAME}.so: ${OBJ}
-	@echo '@gcc -shared -o lib${LIBNAME}.so [OBJ FILES]'
-	@gcc -shared ${CFLAGS} -o lib${LIBNAME}.so ${OBJ}
+${SHARED_LIBNAME}: ${SHARED_BIN}
+	@echo '${CC} -shared ${CFLAGS} -o $@ [Libft shared binaries]'
+	${CC} -shared ${CFLAGS} -o $@ $^
 
-clean:
-	@echo "@rm -f [OBJ FILES]"
-	@rm -f ${OBJ}
+clean_a:
+	@echo "@${RM_F} [Libft static binaries]"
+	@${RM_F} ${STATIC_OBJ}
 
-fclean: clean
-	rm -f lib${LIBNAME}.a lib${LIBNAME}.so
+clean_so:
+	@echo "@${RM_F} [Libft shared binaries]"
+	@${RM_F} ${SHARED_OBJ}
 
-reclean:
-	@echo "@rm -f [OBJ FILES]"
-	@rm -f ${OBJ}
+fclean_a: clean_a
+	${RM_F} ${STATIC_LIBNAME}
 
-re: fclean all
+fclean_so: clean_so
+	${RM_F} ${SHARED_LIBNAME}
+
+re_a: fclean_a a
+
+re_so: fclean_so so
+
+.PHONY: all clean fclean re a clean_a fclean_a re_a so clean_so fclean_so re_so

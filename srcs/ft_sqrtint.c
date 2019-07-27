@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_sqrtint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clemaire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 17:17:13 by clemaire          #+#    #+#             */
-/*   Updated: 2017/11/30 17:46:14 by clemaire         ###   ########.fr       */
+/*   Updated: 2017/12/04 18:59:08 by clemaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_sqrt(int c)
+int		ft_sqrtint(int n)
 {
-	int		res;
+	int		a;
+	int		b;
 
-	if (c < 1)
-		return ((c == 0) ? 0 : -1);
-	res = 1;
-	while (res * res <= c / 4)
-		res *= 2;
-	while (res * res <= c)
-		++res;
-	return (res - 1);
+	if (n < 1)
+		return ((n == 0) ? 0 : -1);
+	a = n;
+	b = 1;
+	while (a > b)
+	{
+		a = (a + b) / 2;
+		b = n / a;
+	}
+	if (a * a > n)
+		return (a - 1);
+	return (a);
 }
