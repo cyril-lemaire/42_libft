@@ -95,9 +95,9 @@ SRC_NAMES =	atoi			\
 			wcslen			\
 			sqrtint			\
 
-SRC =			${SRC_NAMES:%=${SRC_DIR}/$(LIBNAME)_%.c}
-STATIC_BIN =	${SRC_NAMES:%=${STATIC_DIR}/$(LIBNAME)_%.o}
-SHARED_BIN =	${SRC_NAMES:%=${SHARED_DIR}/$(LIBNAME)_%.o}
+SRC =			${SRC_NAMES:%=${SRC_DIR}/${LIBNAME}_%.c}
+STATIC_BIN =	${SRC_NAMES:%=${STATIC_DIR}/${LIBNAME}_%.o}
+SHARED_BIN =	${SRC_NAMES:%=${SHARED_DIR}/${LIBNAME}_%.o}
 
 CC =		gcc
 CFLAGS = 	-Wall -Wextra -Werror
